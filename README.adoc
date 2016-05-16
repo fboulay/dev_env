@@ -1,0 +1,20 @@
+= dev_env
+
+My dev environment for linux.
+
+== Tools used
+
+Here are the tools used to tweak my environment.
+
+* VCSH : https://github.com/RichiH/vcsh
+* Antigen : https://github.com/zsh-users/antigen
+
+== How to use on a new machine
+
+To use git, create a file in your home directory called `.gitconfig-local`. This file should contains git user configuration, for instance:
+
+```
+[user]
+    name = foo
+    mail = foo@gmail.com
+```
