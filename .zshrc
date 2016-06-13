@@ -31,8 +31,11 @@ antigen bundle history-substring-search
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-# Load the awesome theme from fcamblor
-antigen theme fcamblor/oh-my-zsh-agnoster-fcamblor agnoster-fcamblor
+# bind CTRL + space to accept and execute command suggestion
+bindkey '^ ' autosuggest-execute
+
+# Load the awesome theme from fboulay
+antigen theme fboulay/oh-my-zsh-agnoster-fboulay agnoster-fboulay
 
 # Tell antigen that you're done.
 antigen apply
