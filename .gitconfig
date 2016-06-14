@@ -36,7 +36,15 @@
 [diff]
     mnemonicprefix = true
     wordRegex = .
+    compactionHeuristic = true
 [rebase]
     autostash = true
 [log]
-	abbrevCommit = true
+    abbrevCommit = true
+[pager]
+    log = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
+    show = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
+    diff = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
+[interactive]
+    diffFilter = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight 
+

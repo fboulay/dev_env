@@ -58,3 +58,4 @@ eval $(dircolors)
 
 compdef v="vcsh"
 alias vd="vcsh dev_env " 
+
