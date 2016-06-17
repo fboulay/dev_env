@@ -22,14 +22,27 @@ antigen bundle common-aliases
 antigen bundle marzocchi/zsh-notify
 antigen bundle chrissicool/zsh-256color
 
-# Syntax highlighting bundle (load it before  history-substring-search)
+# Syntax highlighting bundle (load it before history-substring-search and before zsh-directory-history)
 antigen bundle zsh-users/zsh-syntax-highlighting
 
-antigen bundle history-substring-search
+# History per directory (and by substring)
+antigen bundle fboulay/zsh-directory-history
+
+# bind history
+zmodload zsh/terminfo
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" directory-history-search-forward
+
+# Bind CTRL+k and CTRL+j to substring search
+#bindkey '^j' history-substring-search-up
+#bindkey '^k' history-substring-search-down
+
+# history by substring
+#antigen bundle history-substring-search
 
 # bind UP and DOWN arrow keys to search history substring
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+#bindkey '^[[A' history-substring-search-up
+#bindkey '^[[B' history-substring-search-down
 
 # bind CTRL + space to accept and execute command suggestion
 bindkey '^ ' autosuggest-execute
@@ -59,3 +72,4 @@ eval $(dircolors)
 compdef v="vcsh"
 alias vd="vcsh dev_env " 
 
+fpath=($fpath ~/.zsh/completion)
