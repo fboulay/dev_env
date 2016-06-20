@@ -22,6 +22,13 @@ antigen bundle common-aliases
 antigen bundle marzocchi/zsh-notify
 antigen bundle chrissicool/zsh-256color
 
+# Super history bound to ctrl+R
+antigen bundle psprint/zsh-navigation-tools
+
+# Automatically source .autoenv.zsh file in each directory, allowing to locally override any
+# variable like PATH
+antigen-bundle Tarrasch/zsh-autoenv
+
 # Syntax highlighting bundle (load it before history-substring-search and before zsh-directory-history)
 antigen bundle zsh-users/zsh-syntax-highlighting
 
