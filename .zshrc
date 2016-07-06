@@ -18,6 +18,7 @@ antigen bundle mvn
 antigen bundle lein
 antigen bundle aws
 antigen bundle httpie
+antigen bundle nvm
 antigen bundle common-aliases
 antigen bundle marzocchi/zsh-notify
 antigen bundle chrissicool/zsh-256color
@@ -80,3 +81,6 @@ compdef v="vcsh"
 alias vd="vcsh dev_env " 
 
 fpath=($fpath ~/.zsh/completion)
+
+export NVM_DIR="/home/florian/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
