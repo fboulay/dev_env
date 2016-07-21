@@ -1,6 +1,7 @@
 source ~/antigen.zsh
 
-setopt correctall
+unsetopt correct_all  
+setopt correct
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh

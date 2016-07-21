@@ -152,3 +152,5 @@ alias :::='cd ../../..'
 [ -s /opt/gce/google-cloud-sdk/completion.bash.inc ] &&  source '/opt/gce/google-cloud-sdk/completion.bash.inc'
 
 alias gce='gcloud compute'
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
