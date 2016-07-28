@@ -53,7 +53,6 @@ if [ "$color_prompt" = yes ]; then
 #    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] \[\033[0;33m\]$(__git_ps1) \[\033[0m\]\n\$ '
 #    PS1='`if [ $? = 0 ]; then echo "\[\033[01;32m\]✔"; else echo "\[\033[01;31m\]✘"; fi` \[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[35m\]$(__git_ps1 " %s") \[\033[01;30m\]$\[\033[00m\] '
     PS1='`if [ $? = 0 ]; then echo "\[\033[01;32m\]✔"; else echo "\[\033[01;31m\]✘"; fi` \[\033[01;33m\]\u\[\033[01;30m\]@\[\033[01;36m\]\h\[\033[01;34m\] \w\[\033[35m\]'
-    source ~/workspace/bash-git-prompt/gitprompt.sh
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w $(__git_ps1) \n\$ '
 fi

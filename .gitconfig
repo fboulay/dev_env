@@ -20,6 +20,7 @@
 	le = log --oneline --decorate
 	pr = pull --rebase
 	wdiff = diff --word-diff
+	fp = fetch -p --all
 [core]
 	excludesfile = /home/fboulay/.gitignore_global
 	autocrlf = false

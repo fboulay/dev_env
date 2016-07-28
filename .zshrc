@@ -63,14 +63,9 @@ antigen theme fboulay/oh-my-zsh-agnoster-fboulay agnoster-fboulay
 antigen apply
 
 # User configuration
-
 export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 
-export PATH="/home/fboulay/.nvm/v0.10.28/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/opt/play:/opt/maven/bin:/opt/cloudbees:/opt/ant/bin:/var/lib/gems/1.8/bin://opt/scala/bin:/opt/android-sdk-linux/tools:/opt/android-sdk-linux/platform-tools:/opt/vert.x/bin:/home/fboulay/bin:/opt/hadoop/bin:/opt/gce/google-cloud-sdk/bin/:/opt/pig/bin"
-
 export EDITOR='vim'
-
-alias parquettools='java -jar ~/workspace/parquet-mr/parquet-tools/target/parquet-tools-1.8.1.jar '
 
 eval "$(lesspipe)"
 
@@ -83,5 +78,4 @@ alias vd="vcsh dev_env "
 
 fpath=($fpath ~/.zsh/completion)
 
-export NVM_DIR="/home/florian/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
