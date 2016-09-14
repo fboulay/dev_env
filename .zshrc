@@ -1,6 +1,6 @@
 source ~/antigen.zsh
 
-unsetopt correct_all  
+unsetopt correct_all
 setopt correct
 
 # Load the oh-my-zsh's library.
@@ -63,18 +63,18 @@ antigen theme fboulay/oh-my-zsh-agnoster-fboulay agnoster-fboulay
 antigen apply
 
 # User configuration
-export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+# export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 
 export EDITOR='vim'
 
 eval "$(lesspipe)"
 
-export MTR_OPTIONS=-t 
+export MTR_OPTIONS=-t
 
 eval $(dircolors)
 
 compdef v="vcsh"
-alias vd="vcsh dev_env " 
+alias vd="vcsh dev_env "
 
 fpath=($fpath ~/.zsh/completion)
 

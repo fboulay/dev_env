@@ -1,0 +1,17 @@
+"*":
+  "atom-ctags":
+    autoBuildTagsWhenActive: true
+  autosave:
+    enabled: true
+  core:
+    disabledPackages: [
+      "symbols-view"
+    ]
+    projectHome: "/home/fboulay/workspace"
+  editor:
+    showIndentGuide: true
+    softWrap: true
+  "fuzzy-finder":
+    preserveLastSearch: true
+  welcome:
+    showOnStartup: false
