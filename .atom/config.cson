@@ -1,4 +1,5 @@
 "*":
+  "asciidoc-preview": {}
   "atom-ctags":
     autoBuildTagsWhenActive: true
   autosave:

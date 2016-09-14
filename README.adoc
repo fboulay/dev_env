@@ -4,12 +4,33 @@ My dev environment for linux.
 
 == Tools used
 
-Here are the tools used to tweak my environment.
+=== Tool to manage the configuration
+
+Vcsh is used do manage a git repository in my home directory.
 
 * VCSH : https://github.com/RichiH/vcsh
+
+=== Configuration files
+
+The repository contains my configuration for the following apps:
+
 * Antigen : https://github.com/zsh-users/antigen
+* zsh
+* bash
+* vim
+* git
+* Atom : https://atom.io/
+* Albert : https://github.com/ManuelSchneid3r/albert
+* CopyQ : https://hluk.github.io/CopyQ/
+* Variety : http://peterlevi.com/variety/
+* gnome terminal
+* meld
+* Maven
+* Shutter : http://shutter-project.org/
 
 == How to use on a new machine
+
+=== git
 
 To use git, create a file in your home directory called `.gitconfig-local`. This file should contains git user configuration, for instance:
 
@@ -18,3 +39,7 @@ To use git, create a file in your home directory called `.gitconfig-local`. This
     name = foo
     mail = foo@gmail.com
 ```
+
+== Licence
+
+link:LICENCE[MIT]
