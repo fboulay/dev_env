@@ -1,26 +1,31 @@
 [include]
-    # Put user.name and user.email in this local file
-    path = ~/.gitconfig-local
+  # Put user.name and user.email in this local file
+  path = ~/.gitconfig-local
 [color]
 	ui = auto
 	status = auto
 	branch = auto
 [alias]
+  co = checkout
+  ci = commit
+  br = branch
+  st = status
+  modified = status -uno
+  adm = add -u
 	lg = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr %an)%Creset' --abbrev-commit --date=relative --graph --all
 	lgg = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr %an)%Creset' --abbrev-commit --date=relative
-	st = status
-	co = checkout
-	ci = commit
-	br = branch
-	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+  le = log --oneline --decorate
 	type = cat-file -t
 	dump = cat-file -p
-	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
-	le = log --oneline --decorate
 	pr = pull --rebase
 	wdiff = diff --word-diff
 	fp = fetch -p --all
+  current-tag= describe --abbrev=0 --tags
+  previous-tag= "!sh -c 'git describe --abbrev=0 --tags $(git current-tag)^'"
+  changelog = "!sh -c 'git --no-pager lg --first-parent $(git previous-tag)..$(git current-tag)'"
+  standup = log --since yesterday --oneline --author 'Florian Boulay'
 [core]
 	excludesfile = /home/fboulay/.gitignore_global
 	autocrlf = false
@@ -35,17 +40,16 @@
 [help]
 	autocorrect = 5
 [diff]
-    mnemonicprefix = true
-    wordRegex = .
-    compactionHeuristic = true
+  mnemonicprefix = true
+  wordRegex = .
+  compactionHeuristic = true
 [rebase]
-    autostash = true
+  autostash = true
 [log]
-    abbrevCommit = true
+  abbrevCommit = true
 [pager]
-    log = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
-    show = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
-    diff = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
+  log = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
+  show = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
+  diff = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
 [interactive]
-    diffFilter = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight 
-
+  diffFilter = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight

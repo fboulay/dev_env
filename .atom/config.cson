@@ -14,5 +14,8 @@
     softWrap: true
   "fuzzy-finder":
     preserveLastSearch: true
+  "tree-view":
+    autoReveal: true
+    squashDirectoryNames: true
   welcome:
     showOnStartup: false
