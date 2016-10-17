@@ -23,6 +23,8 @@ antigen bundle nvm
 antigen bundle common-aliases
 antigen bundle marzocchi/zsh-notify
 antigen bundle chrissicool/zsh-256color
+antigen bundle colored-man-pages
+antigen bundle zsh_reload
 
 # Super history bound to ctrl+R
 antigen bundle psprint/zsh-navigation-tools
@@ -63,7 +65,6 @@ antigen theme fboulay/oh-my-zsh-agnoster-fboulay agnoster-fboulay
 antigen apply
 
 # User configuration
-# export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 
 export EDITOR='vim'
 
@@ -73,9 +74,20 @@ export MTR_OPTIONS=-t
 
 eval $(dircolors)
 
+# VCSH
 compdef v="vcsh"
 alias vd="vcsh dev_env "
 
+# ZSH aliases
 fpath=($fpath ~/.zsh/completion)
 
+# NVM
 [ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
+
+# Go language
+export GOROOT=/opt/golang
+export GOPATH=~/workspace/gopath
+export PATH=$PATH:$GOROOT/bin
+
+# PIP
+export PATH=$PATH:~/.local/bin/

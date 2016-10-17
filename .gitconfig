@@ -2,9 +2,9 @@
   # Put user.name and user.email in this local file
   path = ~/.gitconfig-local
 [color]
-	ui = auto
-	status = auto
-	branch = auto
+  ui = auto
+  status = auto
+  branch = auto
 [alias]
   co = checkout
   ci = commit
@@ -12,33 +12,41 @@
   st = status
   modified = status -uno
   adm = add -u
-	lg = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr %an)%Creset' --abbrev-commit --date=relative --graph --all
-	lgg = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr %an)%Creset' --abbrev-commit --date=relative
+  lg = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr %an)%Creset' --abbrev-commit --date=relative --graph --all
+  lgg = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr %an)%Creset' --abbrev-commit --date=relative
   ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
   ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
   le = log --oneline --decorate
-	type = cat-file -t
-	dump = cat-file -p
-	pr = pull --rebase
-	wdiff = diff --word-diff
-	fp = fetch -p --all
+  type = cat-file -t
+  dump = cat-file -p
+  pr = pull --rebase
+  wdiff = diff --word-diff
+  fp = fetch -p --all
   current-tag= describe --abbrev=0 --tags
   previous-tag= "!sh -c 'git describe --abbrev=0 --tags $(git current-tag)^'"
   changelog = "!sh -c 'git --no-pager lg --first-parent $(git previous-tag)..$(git current-tag)'"
   standup = log --since yesterday --oneline --author 'Florian Boulay'
+  undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
+  please = "push --force-with-lease"
+  commend = "commit --amend --no-edit"
+  it = "!git init && git commit -m “first commit” --allow-empty"
+  stsh = "stash --keep-index"
+  staash = "stash --include-untracked"
+  staaash = "stash --all"
+  mail = "!f() { if [ -z \"${1}\" ]; then echo 'no mail set'; exit 1; fi; git config user.email \"${1}\"; }; f"
 [core]
-	excludesfile = /home/fboulay/.gitignore_global
-	autocrlf = false
-	safecrlf = true
-	editor = vim
+  excludesfile = /home/fboulay/.gitignore_global
+  autocrlf = false
+  safecrlf = true
+  editor = vim
 [push]
-	default = upstream
+  default = upstream
 [merge]
-	tool = /usr/bin/meld
+  tool = /usr/bin/meld
 [gui]
-	warndetachedcommit = true
+  warndetachedcommit = true
 [help]
-	autocorrect = 5
+  autocorrect = 5
 [diff]
   mnemonicprefix = true
   wordRegex = .
