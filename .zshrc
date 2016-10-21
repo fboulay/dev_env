@@ -87,7 +87,7 @@ fpath=($fpath ~/.zsh/completion)
 # Go language
 export GOROOT=/opt/golang
 export GOPATH=~/workspace/gopath
-export PATH=$PATH:$GOROOT/bin
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 # PIP
 export PATH=$PATH:~/.local/bin/
