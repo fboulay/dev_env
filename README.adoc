@@ -14,8 +14,8 @@ Vcsh is used do manage a git repository in my home directory.
 
 . Install vcsh `apt install vcsh` on a Ubuntu linux
 . `vcsh init dev_env`
-. `vcsh vim remote add origin https://github.com/fboulay/dev_env`
-. `vcsh pull`
+. `vcsh dev_env remote add origin https://github.com/fboulay/dev_env`
+. `vcsh dev_env pull`
 
 
 === Configuration files
