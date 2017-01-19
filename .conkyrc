@@ -60,7 +60,7 @@ ${voffset 5}${color FFDDDD}$nodename $sysname $kernel
        on $machine GNU/Linux using Unity$color
 ${voffset 10}System Uptime:${font Play:size=18}$alignr${uptime}$font
 ${voffset 5}${color FB6D51}[ CPU ] ${voffset 2}${hr 2}${voffset 0}$color
-${image workspace/conky_solar_burn/logos/xeon.png -p 0,141 -s 72x72}${voffset 5}${goto 90}${color 77d3f4}${execi 300 cat /proc/cpuinfo |grep 'model name'|sort -u|awk -F: '{ print $2; }'|awk -F: \ '{print $1}'}${voffset -8}${alignr}${color FFCC00}${font Play:Bold:size=22}${acpitemp}${font Play:Bold:size=13}°C
+${image  ~/conky_logos/xeon.png -p 0,141 -s 72x72}${voffset 5}${goto 90}${color 77d3f4}${execi 300 cat /proc/cpuinfo |grep 'model name'|sort -u|awk -F: '{ print $2; }'|awk -F: \ '{print $1}'}${voffset -8}${alignr}${color FFCC00}${font Play:Bold:size=22}${acpitemp}${font Play:Bold:size=13}°C
 ${voffset 3}${goto 90}${color FFCC00}${font Play:Bold:size=20}${voffset -4}${freq_g} GHz$color$font ${color 73D216}${voffset -10}${goto 225}${cpugauge 19,40} ${alignr}${font Play:bold:size=22}${cpu cpu0}${font Play:size=13}%${font}${font Play:size=6} ${font}
 ${voffset -7}${color 777777}${stippled_hr}$color
 ${font Play:size=16}${color C3EC9C}${cpu cpu1}%${goto 92}${cpu cpu2}%${goto 170}${cpu cpu3}%${goto 248}${cpu cpu4}%
@@ -75,14 +75,14 @@ ${color #33b5e5}${top name 3} $alignr${top cpu 3}  ${top mem 3}   ${top pid 3}
 #${color #0099cc}${top name 4} $alignr${top cpu 4}  ${top mem 4}   ${top pid 4}
 #${color #00769d}${top name 5} $alignr${top cpu 5}  ${top mem 5}   ${top pid 5}
 ${voffset 15}${color FB6D51}[ GPU ] ${voffset 2}${hr 2}${voffset 0}$color
-${image workspace/conky_solar_burn/logos/geforce-logo.png -p 190,495 -s 120x64}
-${voffset 20}${alignr}${color FFFFFF}${font Play:bold:size=40}${execi 60 nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader}${font Play:Bold:size=15}${voffset -20}°C                 $font
+${image ~/conky_logos/geforce-logo.png -p 190,495 -s 120x64}
+${voffset 20}${alignr}${color FFFFFF}${font Play:bold:size=40}${execi 60 /usr/lib/nvidia-current/bin/nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader}${font Play:Bold:size=15}${voffset -20}°C                 $font
 ${voffset -70}${font Play:size=12}${color 999999}gpu freq$color
-${goto 30}${voffset -5}${font Play:bold:size=22}${execi 60 nvidia-smi --query-gpu=clocks.gr --format=csv,noheader | rev  | cut -c 5- | rev}${font Play:size=12}mhz
+${goto 30}${voffset -5}${font Play:bold:size=22}${execi 60 /usr/lib/nvidia-current/bin/nvidia-smi --query-gpu=clocks.gr --format=csv,noheader | rev  | cut -c 5- | rev}${font Play:size=12}mhz
 ${font Play:size=12}${color 999999}mem freq$color
-${goto 30}${voffset -5}${font Play:bold:size=22}${execi 60 nvidia-smi --query-gpu=clocks.mem --format=csv,noheader | rev  | cut -c 5- | rev}${font Play:size=12}mhz
+${goto 30}${voffset -5}${font Play:bold:size=22}${execi 60 /usr/lib/nvidia-current/bin/nvidia-smi --query-gpu=clocks.mem --format=csv,noheader | rev  | cut -c 5- | rev}${font Play:size=12}mhz
 ${voffset 15}${color FB6D51}[ MEMORY ] ${voffset 2}${hr 2}${voffset 0}$color
-${image workspace/conky_solar_burn/logos/corsair-logo.png -p 0,590 -s 64x64}${goto 100}${alignr}${color B03BC3}${memgauge 19,40}${color DAC0DE}  ${voffset -2}${font Play:bold:size=22}$memperc${font Play:bold:size=14}%
+${image ~/conky_logos/corsair-logo.png -p 0,590 -s 64x64}${goto 100}${alignr}${color B03BC3}${memgauge 19,40}${color DAC0DE}  ${voffset -2}${font Play:bold:size=22}$memperc${font Play:bold:size=14}%
 ${goto 100}${voffset -28}${font Play:bold:size=20}${mem}$font
 ${goto 100}${font Play:bold:size=14} / ${memmax}$font${alignr}${membar 12,100}
 ${color 777777}${stippled_hr}$color
@@ -96,13 +96,12 @@ ${voffset 15}${color FB6D51}[ DISK ] ${voffset 2}${hr 2}$color
 ${voffset 5}/ (${fs_type /})  $alignr${color FFCC00}${fs_free /} $color(${color FFCC00}${fs_free_perc /}%$color)${color FFCC00} ${fs_bar 10,60 /}$color
 ${voffset -5}${color 777777}${stippled_hr}$color
 / ${goto 90}Read: ${color FFCC00}${diskio_read nvme0n1p3}${font Play:Bold:size=9}/s${font Play:size:12}$color${voffset -5}${alignr}Write: ${color FFCC00}${diskio_write nvme0n1p3}${font Play:size=9}${font Play:Bold:size=9}/s${font Play:size:12}${font}$color
-${voffset 10}${color FB6D51}[ ETHERNET ] (${color b4ebff}${addr wlp2s0}${color FB6D51}) ${voffset 2}${hr 2}${voffset 0}$color
+${voffset 10}${color FB6D51}[ WIFI ] (${color b4ebff}${addr wlp2s0}${color FB6D51}) ${voffset 2}${hr 2}${voffset 0}$color
       ${voffset 6}Up:${voffset -6} ${goto 75}${color 77d3f4}${font Play:bold:size=18}${upspeed wlp2s0}${font Play:size=12}/s $color$alignr Total = ${font Play:Bold:size=12}${color 77d3f4}${totalup wlp2s0}$color$font
 Down: ${voffset -3}${goto 75}${color 77d3f4}${font Play:bold:size=18}${downspeed wlp2s0}${font Play:size=12}/s $color$alignr Total = ${font Play:Bold:size=12}${color 77d3f4}${totaldown wlp2s0}$color$font
-
-
-
-
-${voffset 10}${color 777777}${stippled_hr}
+${voffset 10}${color FB6D51}[ ETHERNET ] (${color b4ebff}${addr enx847beb549faf}${color FB6D51}) ${voffset 2}${hr 2}${voffset 0}$color
+      ${voffset 6}Up:${voffset -6} ${goto 75}${color 77d3f4}${font Play:bold:size=18}${upspeed enx847beb549faf}${font Play:size=12}/s $color$alignr Total = ${font Play:Bold:size=12}${color 77d3f4}${totalup enx847beb549faf}$color$font
+Down: ${voffset -3}${goto 75}${color 77d3f4}${font Play:bold:size=18}${downspeed enx847beb549faf}${font Play:size=12}/s $color$alignr Total = ${font Play:Bold:size=12}${color 77d3f4}${totaldown enx847beb549faf}$color$font
+${voffset -10}${color 777777}${stippled_hr}
 ${voffset -7}${font Play:bold:size=10}/// conky_version ${conky_version}
 ]]

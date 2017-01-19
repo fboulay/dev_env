@@ -133,12 +133,12 @@ function seek {
         echo "pattern and file are mandatory";
         return 1;
     fi
-    find . -name $2 -exec grep -H $1 {} \; 
+    find . -name $2 -exec grep -H $1 {} \;
 }
 
-alias ..='cd ..'; 
-alias ::='cd ../..'; 
-alias :::='cd ../../..' 
+alias ..='cd ..';
+alias ::='cd ../..';
+alias :::='cd ../../..'
 
 [ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
 
