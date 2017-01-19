@@ -10,6 +10,14 @@ Vcsh is used do manage a git repository in my home directory.
 
 * VCSH : https://github.com/RichiH/vcsh
 
+==== How to init this repository on a new machine
+
+. Install vcsh `apt install vcsh` on a Ubuntu linux
+. `vcsh init dev_env`
+. `vcsh vim remote add origin https://github.com/fboulay/dev_env`
+. `vcsh pull`
+
+
 === Configuration files
 
 The repository contains my configuration for the following apps:
@@ -27,6 +35,7 @@ The repository contains my configuration for the following apps:
 * meld
 * Maven
 * Shutter : http://shutter-project.org/
+* Visual Studio Code : https://code.visualstudio.com/
 
 == How to use on a new machine
 
