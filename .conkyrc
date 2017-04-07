@@ -76,11 +76,11 @@ ${color #33b5e5}${top name 3} $alignr${top cpu 3}  ${top mem 3}   ${top pid 3}
 #${color #00769d}${top name 5} $alignr${top cpu 5}  ${top mem 5}   ${top pid 5}
 ${voffset 15}${color FB6D51}[ GPU ] ${voffset 2}${hr 2}${voffset 0}$color
 ${image ~/conky_logos/geforce-logo.png -p 190,495 -s 120x64}
-${voffset 20}${alignr}${color FFFFFF}${font Play:bold:size=40}${execi 60 /usr/lib/nvidia-current/bin/nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader}${font Play:Bold:size=15}${voffset -20}°C                 $font
+${voffset 20}${alignr}${color FFFFFF}${font Play:bold:size=40}${execi 60 LD_LIBRARY_PATH=/usr/lib/nvidia-current/ /usr/lib/nvidia-current/bin/nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader}${font Play:Bold:size=15}${voffset -20}°C                 $font
 ${voffset -70}${font Play:size=12}${color 999999}gpu freq$color
-${goto 30}${voffset -5}${font Play:bold:size=22}${execi 60 /usr/lib/nvidia-current/bin/nvidia-smi --query-gpu=clocks.gr --format=csv,noheader | rev  | cut -c 5- | rev}${font Play:size=12}mhz
+${goto 30}${voffset -5}${font Play:bold:size=22}${execi 60 LD_LIBRARY_PATH=/usr/lib/nvidia-current/ /usr/lib/nvidia-current/bin/nvidia-smi --query-gpu=clocks.gr --format=csv,noheader | rev  | cut -c 5- | rev}${font Play:size=12}mhz
 ${font Play:size=12}${color 999999}mem freq$color
-${goto 30}${voffset -5}${font Play:bold:size=22}${execi 60 /usr/lib/nvidia-current/bin/nvidia-smi --query-gpu=clocks.mem --format=csv,noheader | rev  | cut -c 5- | rev}${font Play:size=12}mhz
+${goto 30}${voffset -5}${font Play:bold:size=22}${execi 60 LD_LIBRARY_PATH=/usr/lib/nvidia-current/ /usr/lib/nvidia-current/bin/nvidia-smi --query-gpu=clocks.mem --format=csv,noheader | rev  | cut -c 5- | rev}${font Play:size=12}mhz
 ${voffset 15}${color FB6D51}[ MEMORY ] ${voffset 2}${hr 2}${voffset 0}$color
 ${image ~/conky_logos/corsair-logo.png -p 0,590 -s 64x64}${goto 100}${alignr}${color B03BC3}${memgauge 19,40}${color DAC0DE}  ${voffset -2}${font Play:bold:size=22}$memperc${font Play:bold:size=14}%
 ${goto 100}${voffset -28}${font Play:bold:size=20}${mem}$font

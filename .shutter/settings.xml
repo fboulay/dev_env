@@ -13,7 +13,7 @@
   <plugins name="/usr/share/shutter/resources/system/plugins/shell/spraise" binary="/usr/share/shutter/resources/system/plugins/shell/spraise/spraise" category="Effect" lang="shell" name_plugin="Raise Border" tooltip="Raise a rectangular 3d-border" />
   <plugins name="/usr/share/shutter/resources/system/plugins/shell/spsoftedges" binary="/usr/share/shutter/resources/system/plugins/shell/spsoftedges/spsoftedges" category="Effect" lang="shell" name_plugin="Soft Edges" tooltip="Add soft edges around the image" />
   <plugins name="/usr/share/shutter/resources/system/plugins/shell/spsunk" binary="/usr/share/shutter/resources/system/plugins/shell/spsunk/spsunk" category="Effect" lang="shell" name_plugin="Sunk Border" tooltip="Add an inverted 3d border to the image" />
-  <plugins name="/usr/share/shutter/resources/system/plugins/shell/sptornedpaper" binary="/usr/share/shutter/resources/system/plugins/shell/sptornedpaper/sptornedpaper" category="Effect" lang="shell" name_plugin="Torned Paper" recent="1482338865.37324" tooltip="Add a torn-like border to the image" />
+  <plugins name="/usr/share/shutter/resources/system/plugins/shell/sptornedpaper" binary="/usr/share/shutter/resources/system/plugins/shell/sptornedpaper/sptornedpaper" category="Effect" lang="shell" name_plugin="Torned Paper" recent="1486656692.7319" tooltip="Add a torn-like border to the image" />
   <plugins name="/usr/share/shutter/resources/system/plugins/shell/sptrim" binary="/usr/share/shutter/resources/system/plugins/shell/sptrim/sptrim" category="Tool" lang="shell" name_plugin="Autocrop" tooltip="Remove empty borders from the image" />
   <recent ruu_hosting="0" ruu_places="0" ruu_tab="0" />
 </opt>

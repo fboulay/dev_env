@@ -1,11 +1,14 @@
 // Place your settings in this file to overwrite the default settings
 {
-        "editor.wrappingColumn": 0,
-        "editor.wordWrap": true,
+        "editor.wordWrap": "on",
         "editor.mouseWheelZoom": true,
         "editor.fontSize": 14,
         "editor.fontFamily": " 'DejaVu Sans Mono', 'Ubuntu Mono'",
+        "editor.minimap.enabled": true,
+        "editor.minimap.renderCharacters":false,
         "files.autoSave": "onFocusChange",
         "telemetry.enableTelemetry": false,
-        "window.zoomLevel": 0
-}
+        "window.zoomLevel": 0,
+        "vsicons.projectDetection.autoReload": true,
+        "workbench.iconTheme": "vscode-icons"
+    }
