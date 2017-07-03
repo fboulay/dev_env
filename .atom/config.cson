@@ -1,5 +1,6 @@
 "*":
-  "asciidoc-preview": {}
+  "asciidoc-preview":
+    scrollMode: false
   "atom-ctags":
     autoBuildTagsWhenActive: true
   autosave:
@@ -11,8 +12,11 @@
     projectHome: "/home/fboulay/workspace"
     telemetryConsent: "no"
   editor:
+    fontSize: 12
     showIndentGuide: true
     softWrap: true
+  "exception-reporting":
+    userId: "291f26c0-e68f-41d9-a948-d9ba1a819048"
   "fuzzy-finder":
     preserveLastSearch: true
   "go-plus":

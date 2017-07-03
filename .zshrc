@@ -3,6 +3,9 @@ source ~/antigen.zsh
 unsetopt correct_all
 setopt correct
 
+export ZSH_HIGHLIGHT_MAXLENGTH=300
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 
@@ -24,7 +27,6 @@ antigen bundle common-aliases
 antigen bundle marzocchi/zsh-notify
 antigen bundle chrissicool/zsh-256color
 antigen bundle colored-man-pages
-antigen bundle zsh_reload
 
 # Super history bound to ctrl+R
 antigen bundle psprint/zsh-navigation-tools
@@ -83,6 +85,7 @@ fpath=($fpath ~/.zsh/completion)
 
 # NVM
 [ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
+
 
 # Go language
 export GOROOT=/opt/golang
