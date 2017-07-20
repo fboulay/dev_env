@@ -80,12 +80,15 @@ eval $(dircolors)
 compdef v="vcsh"
 alias vd="vcsh dev_env "
 
-# ZSH aliases
+# https://github.com/athityakumar/colorls
+alias lc="colorls -sd"
+
+# ZSH completion
 fpath=($fpath ~/.zsh/completion)
+rm -f ~/.zcompdump; compinit
 
 # NVM
 [ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
-
 
 # Go language
 export GOROOT=/opt/golang
