@@ -55,9 +55,15 @@
   autostash = true
 [log]
   abbrevCommit = true
-[pager]
-  log = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
-  show = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
-  diff = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
-[interactive]
-  diffFilter = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = 227
+	frag = magenta bold
+	commit = 227 bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse

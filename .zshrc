@@ -90,6 +90,9 @@ rm -f ~/.zcompdump; compinit
 # NVM
 [ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
 
+# maven
+export PATH=$PATH:/opt/maven/bin
+
 # Go language
 export GOROOT=/opt/golang
 export GOPATH=~/workspace/gopath
