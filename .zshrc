@@ -100,3 +100,6 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 # PIP
 export PATH=$PATH:~/.local/bin/
+
+# Google
+export PATH=$PATH:/opt/google-cloud-sdk/bin
