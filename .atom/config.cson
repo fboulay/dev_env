@@ -12,8 +12,8 @@
     projectHome: "/home/fboulay/workspace"
     telemetryConsent: "no"
   editor:
-    fontSize: 12
     showIndentGuide: true
+    showInvisibles: true
     softWrap: true
   "exception-reporting":
     userId: "291f26c0-e68f-41d9-a948-d9ba1a819048"

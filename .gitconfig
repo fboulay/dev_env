@@ -21,7 +21,7 @@
   dump = cat-file -p
   pr = pull --rebase
   wdiff = diff --word-diff
-  fp = fetch -p --all
+  fp = "!git fetch -p --all && git branch -vv|grep ': gone]'|awk '{print $1}'|xargs git branch -D"
   current-tag= describe --abbrev=0 --tags
   previous-tag= "!sh -c 'git describe --abbrev=0 --tags $(git current-tag)^'"
   changelog = "!sh -c 'git --no-pager lg --first-parent $(git previous-tag)..$(git current-tag)'"
@@ -51,6 +51,7 @@
   mnemonicprefix = true
   wordRegex = .
   compactionHeuristic = true
+	colorMoved = zebra
 [rebase]
   autostash = true
 [log]
