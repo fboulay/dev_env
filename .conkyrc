@@ -49,7 +49,7 @@ ${voffset 5}${color FFDDDD}$nodename $sysname $kernel
 ${voffset 10}System Uptime:${font Liberation Sans:size=18}$alignr${uptime}$font
 ${voffset 5}${color FB6D51}[ CPU ] ${voffset 2}${hr 2}${voffset 0}$color
 ${voffset 2}${font Liberation Sans:size=10}${color 77d3f4}${execi 300 cat /proc/cpuinfo |grep 'model name'|sort -u|awk -F: '{ print $2; }'|awk -F: \ '{print $1}'}
-${image  ~/conky_logos/cpu.png -p 0,155 -s 72x72}${font Liberation Sans:size=6}${voffset 5}${goto 90}${color FFCC00}${font Liberation Sans:Bold:size=20}${acpitemp}${font Liberation Sans:Bold:size=13}°C
+${image  ~/conky_logos/cpu.png -p 0,155 -s 72x72}${font Liberation Sans:size=6}${voffset 5}${goto 90}${color FFCC00}${font Liberation Sans:Bold:size=20}${execi 10 sensors | grep CPU | cut -c18-21}${font Liberation Sans:Bold:size=13}°C
 ${voffset 3}${goto 90}${color FFCC00}${font Liberation Sans:Bold:size=20}${voffset -4}${freq_g} GHz$color$font ${color 73D216}${voffset -10}${goto 225}${cpugauge 19,40} ${alignr}${font Liberation Sans:bold:size=22}${cpu cpu0}${font Liberation Sans:size=13}%${font}${font Liberation Sans:size=6} ${font}
 ${voffset -20}${color 777777}${stippled_hr}$color
 ${font Liberation Sans:size=16}${color C3EC9C}${cpu cpu1}%${goto 92}${cpu cpu2}%${goto 170}${cpu cpu3}%${goto 248}${cpu cpu4}%

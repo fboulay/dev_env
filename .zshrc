@@ -83,6 +83,23 @@ alias vd="vcsh dev_env "
 # https://github.com/athityakumar/colorls
 alias lc="colorls -sd"
 
+alias less=/usr/share/vim/vim80/macros/less.sh
+
+alias -g C="| xclip -sel clip"
+alias -g V="xclip -o"
+
+# extract version from Maven pom.xml, use it to make a git tag, and push the tag
+gtm () {
+   local version=$(mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]')
+   git tag -a v${version} -m "Version ${version}" && gp origin v${version}
+}
+
+# extract version from Node package.json, use it to make a git tag, and push the tag
+gtn () {
+  local version=$(jq -r ".version" package.json)
+  git tag -a v${version} -m "Version ${version}" && gp origin v${version}
+}
+
 # ZSH completion
 fpath=($fpath ~/.zsh/completion)
 rm -f ~/.zcompdump; compinit

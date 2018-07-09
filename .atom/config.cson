@@ -8,6 +8,7 @@
   core:
     disabledPackages: [
       "symbols-view"
+      "metrics"
     ]
     projectHome: "/home/fboulay/workspace"
     telemetryConsent: "no"
