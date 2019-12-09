@@ -154,3 +154,7 @@ alias gce='gcloud compute'
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/fboulay/.sdkman"
+[[ -s "/home/fboulay/.sdkman/bin/sdkman-init.sh" ]] && source "/home/fboulay/.sdkman/bin/sdkman-init.sh"

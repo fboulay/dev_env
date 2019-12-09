@@ -27,13 +27,14 @@ antigen bundle common-aliases
 antigen bundle marzocchi/zsh-notify
 antigen bundle chrissicool/zsh-256color
 antigen bundle colored-man-pages
+antigen bundle autojump # need to install autojump first, eg : apt install autojump
 
 # Super history bound to ctrl+R
 antigen bundle psprint/zsh-navigation-tools
 
 # Automatically source .autoenv.zsh file in each directory, allowing to locally override any
 # variable like PATH
-antigen-bundle Tarrasch/zsh-autoenv
+antigen bundle Tarrasch/zsh-autoenv
 
 # Syntax highlighting bundle (load it before history-substring-search and before zsh-directory-history)
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -83,7 +84,7 @@ alias vd="vcsh dev_env "
 # https://github.com/athityakumar/colorls
 alias lc="colorls -sd"
 
-alias less=/usr/share/vim/vim80/macros/less.sh
+alias less=/usr/share/vim/vim81/macros/less.sh
 
 alias -g C="| xclip -sel clip"
 alias -g V="xclip -o"
@@ -91,13 +92,13 @@ alias -g V="xclip -o"
 # extract version from Maven pom.xml, use it to make a git tag, and push the tag
 gtm () {
    local version=$(mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]')
-   git tag -a v${version} -m "Version ${version}" && gp origin v${version}
+   git tag -a v${version} -m "Version ${version}" && git push origin v${version}
 }
 
 # extract version from Node package.json, use it to make a git tag, and push the tag
 gtn () {
   local version=$(jq -r ".version" package.json)
-  git tag -a v${version} -m "Version ${version}" && gp origin v${version}
+  git tag -a v${version} -m "Version ${version}" && git push origin v${version}
 }
 
 # ZSH completion
@@ -108,10 +109,10 @@ rm -f ~/.zcompdump; compinit
 [ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
 
 # maven
-export PATH=$PATH:/opt/maven/bin
+#export PATH=$PATH:/opt/maven/bin
 
 # Go language
-export GOROOT=/opt/golang
+#export GOROOT=/opt/golang
 export GOPATH=~/workspace/gopath
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
@@ -120,3 +121,7 @@ export PATH=$PATH:~/.local/bin/
 
 # Google
 export PATH=$PATH:/opt/google-cloud-sdk/bin
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/fboulay/.sdkman"
+[[ -s "/home/fboulay/.sdkman/bin/sdkman-init.sh" ]] && source "/home/fboulay/.sdkman/bin/sdkman-init.sh"
