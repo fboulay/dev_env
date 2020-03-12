@@ -84,6 +84,11 @@ alias vd="vcsh dev_env "
 # https://github.com/athityakumar/colorls
 alias lc="colorls -sd"
 
+# display last file in current directory (by date desc)
+alias lf="ls -tp | grep -v /$ | head -1"
+# display current date with iso 8601 format
+alias now='date "+%Y-%m-%d"'
+
 alias less=/usr/share/vim/vim81/macros/less.sh
 
 alias -g C="| xclip -sel clip"
@@ -108,8 +113,9 @@ rm -f ~/.zcompdump; compinit
 # NVM
 [ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
 
-# maven
-#export PATH=$PATH:/opt/maven/bin
+# Load custom key bindings for gnome
+# command to save custom key bindings
+dconf load /org/gnome/desktop/wm/keybindings/ < ~/.config/dconf/user.conf
 
 # Go language
 #export GOROOT=/opt/golang
@@ -119,8 +125,10 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 # PIP
 export PATH=$PATH:~/.local/bin/
 
-# Google
-export PATH=$PATH:/opt/google-cloud-sdk/bin
+# rust
+export PATH="$HOME/.cargo/bin:$PATH"
+
+source /home/fboulay/.config/broot/launcher/bash/br
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/fboulay/.sdkman"

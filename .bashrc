@@ -158,3 +158,5 @@ export PATH="/usr/local/heroku/bin:$PATH"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/fboulay/.sdkman"
 [[ -s "/home/fboulay/.sdkman/bin/sdkman-init.sh" ]] && source "/home/fboulay/.sdkman/bin/sdkman-init.sh"
+
+source /home/fboulay/.config/broot/launcher/bash/br

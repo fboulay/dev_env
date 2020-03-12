@@ -52,7 +52,7 @@
     "breadcrumbs.enabled": true,
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication -javaagent:\"/home/fboulay/.vscode/extensions/gabrielbb.vscode-lombok-0.9.9/server/lombok.jar\"",
+    "java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication -javaagent:\"/home/fboulay/.vscode/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\"",
     "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
     "java.format.settings.profile": "GoogleStyle",
     "workbench.iconTheme": "vscode-icons",
@@ -74,8 +74,12 @@
     "cSpell.userWords": [
         "Adwords",
         "Armis",
+        "Autowired",
+        "Configurer",
+        "Cors",
         "Deserialization",
-        "Liquibase"
+        "Liquibase",
+        "Servlet"
     ],
     "search.exclude": {
         "**/target/**": true

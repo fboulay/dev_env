@@ -1,4 +1,4 @@
-conky.config = {
+ conky.config = {
    alignment = 'top_right',
    background = true,
    border_width = 10,
