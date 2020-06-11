@@ -84,5 +84,6 @@
     "search.exclude": {
         "**/target/**": true
     },
-    "vsicons.dontShowNewVersionMessage": true
+    "vsicons.dontShowNewVersionMessage": true,
+    "java.semanticHighlighting.enabled": true
 }
