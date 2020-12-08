@@ -6,10 +6,28 @@
 
 # Matches are the substitution rules, when you type the "trigger" string
 # it gets replaced by the "replace" string.
+toggle_key: OFF
 matches:
   # Simple text replacement
-  - trigger: ":espanso"
-    replace: "Hi there!"
+  # - trigger: ":espanso"
+  #   replace: "Hi there!"
+
+  # - trigger: ":hi"
+  #   replace: "Bonjour ! 👋"
+
+  # For tools that do not send the message inside the code block if enter is pressed (eg Discord)
+  - trigger: ":code"
+    replace: |-
+      ```
+      $|$
+      ```
+  # For tools that do send the message inside the code block if enter is pressed (eg Google Chat)
+  - trigger: ":snip"
+    replace: >-
+      ```
+      $|$
+      ```
+
 
   # Dates
   - trigger: ":date"
@@ -18,13 +36,45 @@ matches:
       - name: mydate
         type: date
         params:
-          format: "%d/%m/%Y"
+          format: "%Y-%m-%d"
+
+  - trigger: ":time"
+    replace: "{{mytime}}"
+    vars:
+      - name: mytime
+        type: date
+        params:
+          format: "%H:%M"
 
   # Shell commands
-  - trigger: ":shell"
+  # - trigger: ":shell"
+  #   replace: "{{output}}"
+  #   vars:
+  #     - name: output
+  #       type: shell
+  #       params:
+  #         cmd: "echo Hello from your shell"
+  
+  - trigger: ":pass"
     replace: "{{output}}"
     vars:
       - name: output
         type: shell
         params:
-          cmd: "echo Hello from your shell"
+          cmd: "< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c32"
+
+  - trigger: ":rand"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "apg -n 1 -m 10"
+
+  - trigger: ":hi"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "P=('Salut !' 'Bonjour ! 👋' 'Coucou'); echo ${P[RANDOM%${#P[@]}]}"

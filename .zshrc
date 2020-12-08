@@ -89,6 +89,8 @@ alias lf="ls -tp | grep -v /$ | head -1"
 # display current date with iso 8601 format
 alias now='date "+%Y-%m-%d"'
 
+alias cam='sudo ffmpeg  -i http://192.168.1.108:4747/video -vf format=yuv420p,scale=1920x1080 -f v4l2  /dev/video2'
+
 alias less=/usr/share/vim/vim81/macros/less.sh
 
 alias -g C="| xclip -sel clip"
@@ -127,6 +129,17 @@ export PATH=$PATH:~/.local/bin/
 
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# allow to read man as PDF
+manps() {
+  manps_file=$(mktemp manps.XXXXX)
+  man -t "$1" > $manps_file
+  evince $manps_file
+  rm -f $manps_file
+}
+
+# yubikey agent: https://github.com/FiloSottile/yubikey-agent
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/yubikey-agent/yubikey-agent.sock"
 
 source /home/fboulay/.config/broot/launcher/bash/br
 

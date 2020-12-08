@@ -85,5 +85,6 @@
         "**/target/**": true
     },
     "vsicons.dontShowNewVersionMessage": true,
-    "java.semanticHighlighting.enabled": true
+    "java.semanticHighlighting.enabled": true,
+    "workbench.colorTheme": "Dark++"
 }

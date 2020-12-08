@@ -36,6 +36,9 @@ The repository contains my configuration for the following apps:
 * Maven
 * Shutter : http://shutter-project.org/
 * Visual Studio Code : https://code.visualstudio.com/
+* Espanso: https://espanso.org/
+* Conky
+
 
 == How to use on a new machine
 
@@ -48,6 +51,23 @@ To use git, create a file in your home directory called `.gitconfig-local`. This
     name = foo
     mail = foo@gmail.com
 ```
+
+== Other manual installation
+
+=== Droidcam
+
+To use the smartphone as a webcam https://www.dev47apps.com/droidcam/linux/
+
+=== OBS
+
+To have OBS work, we have to install a plugin to create a virtual camera. OBS plugin to have a sink to v4l2
+
+This article explains how to install the plugin https://blog.jbrains.ca/permalink/using-obs-studio-as-a-virtual-cam-on-linux
+
+The repository of the plugin is https://github.com/CatxFish/obs-v4l2sink
+
+
+
 
 == Licence
 
