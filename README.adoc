@@ -66,8 +66,20 @@ This article explains how to install the plugin https://blog.jbrains.ca/permalin
 
 The repository of the plugin is https://github.com/CatxFish/obs-v4l2sink
 
+=== Yubikey agent
 
+To manage SSH key in a Yubiket https://github.com/FiloSottile/yubikey-agent
 
+=== Script to use the NTP server returned by the DHCP server
+
+Network Manager do not communicate to Systemd the NTP server returned by the DCHP server. This script allow to do it:
+https://wiki.archlinux.org/index.php/Systemd-timesyncd#Dynamically_set_NTP_servers_received_via_DHCP
+
+== Local network
+
+Install `certbot` to create and renew certificates.
+
+Install `pihole` to have a local DNS resolver and a local DHCP server.
 
 == Licence
 

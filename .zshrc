@@ -108,6 +108,18 @@ gtn () {
   git tag -a v${version} -m "Version ${version}" && git push origin v${version}
 }
 
+# create a countdown, seconds passed as the first argument - it write the countdown in a static file to be used by OBS
+function count_obs() {
+    date=$((`date +%s` + $1));
+    date_cmd='echo -ne "$(date -u --date @$(($date - `date +%s`)) +%M:%S)"'
+
+    while [ "$date" -ne `date +%s` ]; do
+        eval $date_cmd > /tmp/count;
+        sleep 1
+    done
+    eval $date_cmd > /tmp/count;
+}
+
 # ZSH completion
 fpath=($fpath ~/.zsh/completion)
 rm -f ~/.zcompdump; compinit
