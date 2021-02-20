@@ -155,6 +155,11 @@ export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/yubikey-agent/yubikey-agent.sock"
 
 source /home/fboulay/.config/broot/launcher/bash/br
 
+# brew
+eval $(/home/fboulay/.linuxbrew/bin/brew shellenv)
+
+
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/fboulay/.sdkman"
 [[ -s "/home/fboulay/.sdkman/bin/sdkman-init.sh" ]] && source "/home/fboulay/.sdkman/bin/sdkman-init.sh"

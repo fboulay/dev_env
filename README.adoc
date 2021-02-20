@@ -66,6 +66,8 @@ This article explains how to install the plugin https://blog.jbrains.ca/permalin
 
 The repository of the plugin is https://github.com/CatxFish/obs-v4l2sink
 
+This website allow to animate static images : https://www.3dgifmaker.com/
+
 === Yubikey agent
 
 To manage SSH key in a Yubiket https://github.com/FiloSottile/yubikey-agent
