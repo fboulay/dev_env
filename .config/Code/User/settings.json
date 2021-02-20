@@ -13,6 +13,7 @@
     "emmet.triggerExpansionOnTab": true,
     "files.autoSave": "onFocusChange",
     "files.trimFinalNewlines": true,
+    "files.insertFinalNewline": true,
     "telemetry.enableTelemetry": false,
     "telemetry.enableCrashReporter": false,
     "window.zoomLevel": 0,
@@ -73,18 +74,22 @@
     ],
     "cSpell.userWords": [
         "Adwords",
+        "Appender",
         "Armis",
         "Autowired",
         "Configurer",
         "Cors",
         "Deserialization",
         "Liquibase",
-        "Servlet"
+        "Roadmap",
+        "Servlet",
+        "appnexus"
     ],
     "search.exclude": {
         "**/target/**": true
     },
     "vsicons.dontShowNewVersionMessage": true,
     "java.semanticHighlighting.enabled": true,
-    "workbench.colorTheme": "Dark++"
+    "workbench.colorTheme": "Dark++",
+    "discord.detailsEditing": "Working hard"
 }
