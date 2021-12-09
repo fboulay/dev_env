@@ -1,0 +1,12 @@
+# include the default.pa pulseaudio config file
+.include /etc/pulse/default.pa
+
+# null sink
+.ifexists module-null-sink.so
+load-module module-null-sink sink_name=ObsOutput sink_properties=device.description="obs-output"
+.endif
+
+# virtual source
+.ifexists module-virtual-source.so
+load-module module-virtual-source source_name=ObsMic master=ObsOutput.monitor
+.endif

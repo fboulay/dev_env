@@ -12,15 +12,23 @@ fi
 newSource="$1"
 newPort="$2"
 
-pacmd set-default-source ${newSource}
+pactl set-default-source ${newSource}
 
-pactl list short source-outputs|while read stream; do
-    streamId=$(echo $stream|cut '-d ' -f1)
-    echo "moving input stream $streamId"
-    pactl move-source-output "$streamId" "$newSource"
-done
+if pgrep -x "pipewire-pulse" >/dev/null
+then
+    # Pipewire
+    echo "Nothing to do"
+else
+    # PulseAudio
+    pactl list short source-outputs|while read stream; do
+        streamId=$(echo $stream|cut '-d ' -f1)
+        echo "moving input stream $streamId"
+        pactl move-source-output "$streamId" "$newSource"
+    done
+fi
+
 
 if [[ ! -z "$newPort" ]]; then
     echo "changing port to $newPort"
-    pacmd set-source-port "$newSource" "$newPort"
+    pactl set-source-port "$newSource" "$newPort"
 fi

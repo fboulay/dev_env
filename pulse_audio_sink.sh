@@ -12,15 +12,22 @@ fi
 newSink="$1"
 newPort="$2"
 
-pacmd set-default-sink ${newSink}
+pactl set-default-sink ${newSink}
 
-pactl list short sink-inputs|while read stream; do
-    streamId=$(echo $stream|cut '-d ' -f1)
-    echo "moving stream $streamId"
-    pactl move-sink-input "$streamId" "$newSink"
-done
+if pgrep -x "pipewire-pulse" >/dev/null
+then
+    # Pipewire
+    echo "Nothing to do"
+else
+    # PulseAudio
+    pactl list short sink-inputs|while read stream; do
+        streamId=$(echo $stream|cut '-d ' -f1)
+        echo "moving stream $streamId"
+        pactl move-sink-input "$streamId" "$newSink"
+    done
+fi
 
 if [[ ! -z "$newPort" ]]; then
     echo "changing port to $newPort"
-    pacmd set-sink-port "$newSink" "$newPort"
+    pactl set-sink-port "$newSink" "$newPort"
 fi

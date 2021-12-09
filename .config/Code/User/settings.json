@@ -6,6 +6,7 @@
     "editor.fontFamily": "'Cascadia Code', 'DejaVu Sans Mono', 'Ubuntu Mono'",
     "editor.fontLigatures": true,
     "editor.formatOnPaste": true,
+    "editor.guides.bracketPairs":true,
     "editor.minimap.enabled": true,
     "editor.minimap.renderCharacters": false,
     "editor.autoIndent": true,
@@ -14,8 +15,7 @@
     "files.autoSave": "onFocusChange",
     "files.trimFinalNewlines": true,
     "files.insertFinalNewline": true,
-    "telemetry.enableTelemetry": false,
-    "telemetry.enableCrashReporter": false,
+    "telemetry.telemetryLevel": "off",
     "window.zoomLevel": 0,
     "files.exclude": {
         "**/__pycache__": true,
@@ -64,7 +64,12 @@
     "gitlens.views.lineHistory.location": "gitlens",
     "gitlens.views.compare.location": "gitlens",
     "gitlens.views.search.location": "gitlens",
-    "terminal.integrated.shell.linux": "/bin/zsh",
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.profiles.linux": {
+        "zsh": {
+            "path": "/usr/bin/zsh"
+        }
+    },
     "terminal.integrated.fontFamily": "Ubuntu Mono derivative Powerline",
     "maven.terminal.favorites": [
         {
@@ -75,21 +80,30 @@
     "cSpell.userWords": [
         "Adwords",
         "Appender",
+        "appnexus",
         "Armis",
         "Autowired",
+        "boulay",
         "Configurer",
         "Cors",
         "Deserialization",
         "Liquibase",
         "Roadmap",
         "Servlet",
-        "appnexus"
+        "Uncompress",
+        "unifi"
     ],
     "search.exclude": {
         "**/target/**": true
     },
     "vsicons.dontShowNewVersionMessage": true,
     "java.semanticHighlighting.enabled": true,
-    "workbench.colorTheme": "Dark++",
-    "discord.detailsEditing": "Working hard"
+    "discord.detailsEditing": "Working hard",
+    "redhat.telemetry.enabled": false,
+    "[clojure]": {
+        "editor.defaultFormatter": "betterthantomorrow.calva"
+    },
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    }
 }

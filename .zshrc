@@ -44,19 +44,9 @@ antigen bundle fboulay/zsh-directory-history
 
 # bind history
 zmodload zsh/terminfo
-bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcuu1]" directory-history-search-backward
 bindkey "$terminfo[kcud1]" directory-history-search-forward
 
-# Bind CTRL+k and CTRL+j to substring search
-#bindkey '^j' history-substring-search-up
-#bindkey '^k' history-substring-search-down
-
-# history by substring
-#antigen bundle history-substring-search
-
-# bind UP and DOWN arrow keys to search history substring
-#bindkey '^[[A' history-substring-search-up
-#bindkey '^[[B' history-substring-search-down
 
 # bind CTRL + space to accept and execute command suggestion
 bindkey '^ ' autosuggest-execute
@@ -89,12 +79,11 @@ alias lf="ls -tp | grep -v /$ | head -1"
 # display current date with iso 8601 format
 alias now='date "+%Y-%m-%d"'
 
-alias cam='sudo ffmpeg  -i http://192.168.1.108:4747/video -vf format=yuv420p,scale=1920x1080 -f v4l2  /dev/video2'
-
-alias less=/usr/share/vim/vim81/macros/less.sh
+alias less=/usr/share/vim/vim82/macros/less.sh
 
 alias -g C="| xclip -sel clip"
 alias -g V="xclip -o"
+alias -g X="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
 
 # extract version from Maven pom.xml, use it to make a git tag, and push the tag
 gtm () {
@@ -157,8 +146,6 @@ source /home/fboulay/.config/broot/launcher/bash/br
 
 # brew
 eval $(/home/fboulay/.linuxbrew/bin/brew shellenv)
-
-
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/fboulay/.sdkman"

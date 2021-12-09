@@ -14,7 +14,7 @@
    use_xft = true,
    font = 'Liberation Sans:size=11',
    gap_x = 10,
-   gap_y = 38,
+   gap_y = 50,
    imlib_cache_size = 10,
    minimum_height = 1380,
    minimum_width = 300,
@@ -27,11 +27,11 @@
    own_window = true,
    own_window_class = 'Conky',
    own_window_colour = '222222',
-   own_window_type = 'desktop',
+   own_window_type = 'dock',
    own_window_transparent = false,
    own_window_argb_visual = true,
    own_window_argb_value = 220,
-   own_window_hints = 'undecorated,skip_taskbar,skip_pager,below',
+   own_window_hints = 'undecorated,skip_taskbar,skip_pager,below,sticky',
    stippled_borders = 0,
    text_buffer_size = 512,
    update_interval = 3.20,
@@ -89,9 +89,9 @@ ${voffset -5}${color 777777}${stippled_hr}$color
 ${voffset 10}${color FB6D51}[ WIFI ] (${color b4ebff}${addr wlp2s0}${color FB6D51}) ${voffset 2}${hr 2}${voffset 0}$color
       ${voffset 6}Up:${voffset -6} ${goto 75}${color 77d3f4}${font Liberation Sans:bold:size=18}${upspeed wlp2s0}${font Liberation Sans:size=12}/s $color$alignr Total = ${font Liberation Sans:Bold:size=12}${color 77d3f4}${totalup wlp2s0}$color$font
 Down: ${voffset -3}${goto 75}${color 77d3f4}${font Liberation Sans:bold:size=18}${downspeed wlp2s0}${font Liberation Sans:size=12}/s $color$alignr Total = ${font Liberation Sans:Bold:size=12}${color 77d3f4}${totaldown wlp2s0}$color$font
-${voffset 10}${color FB6D51}[ ETHERNET ] (${color b4ebff}${addr enxa44cc8f4bfa3}${color FB6D51}) ${voffset 2}${hr 2}${voffset 0}$color
-      ${voffset 6}Up:${voffset -6} ${goto 75}${color 77d3f4}${font Liberation Sans:bold:size=18}${upspeed enxa44cc8f4bfa3}${font Liberation Sans:size=12}/s $color$alignr Total = ${font Liberation Sans:Bold:size=12}${color 77d3f4}${totalup enxa44cc8f4bfa3}$color$font
-Down: ${voffset -3}${goto 75}${color 77d3f4}${font Liberation Sans:bold:size=18}${downspeed enxa44cc8f4bfa3}${font Liberation Sans:size=12}/s $color$alignr Total = ${font Liberation Sans:Bold:size=12}${color 77d3f4}${totaldown enxa44cc8f4bfa3}$color$font
+${voffset 10}${color FB6D51}[ ETHERNET ] (${color b4ebff}${addr enx00e04c680247}${color FB6D51}) ${voffset 2}${hr 2}${voffset 0}$color
+      ${voffset 6}Up:${voffset -6} ${goto 75}${color 77d3f4}${font Liberation Sans:bold:size=18}${upspeed enx00e04c680247}${font Liberation Sans:size=12}/s $color$alignr Total = ${font Liberation Sans:Bold:size=12}${color 77d3f4}${totalup enx00e04c680247}$color$font
+Down: ${voffset -3}${goto 75}${color 77d3f4}${font Liberation Sans:bold:size=18}${downspeed enx00e04c680247}${font Liberation Sans:size=12}/s $color$alignr Total = ${font Liberation Sans:Bold:size=12}${color 77d3f4}${totaldown enx00e04c680247}$color$font
 ${voffset -10}${color 777777}${stippled_hr}
 ${voffset -7}${font Liberation Sans:bold:size=10}/// conky_version ${conky_version}
 ]]
