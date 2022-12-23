@@ -9,14 +9,13 @@
     "editor.guides.bracketPairs":true,
     "editor.minimap.enabled": true,
     "editor.minimap.renderCharacters": false,
-    "editor.autoIndent": true,
+    "editor.autoIndent": "full",
     "editor.tabCompletion": "on",
     "emmet.triggerExpansionOnTab": true,
     "files.autoSave": "onFocusChange",
     "files.trimFinalNewlines": true,
     "files.insertFinalNewline": true,
     "telemetry.telemetryLevel": "off",
-    "window.zoomLevel": 0,
     "files.exclude": {
         "**/__pycache__": true,
         "**/.classpath": true,
@@ -105,5 +104,7 @@
     },
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter.notebook.ipynb"
-    }
+    },
+    "calva.paredit.defaultKeyMap": "strict",
+    "editor.unicodeHighlight.nonBasicASCII": false
 }

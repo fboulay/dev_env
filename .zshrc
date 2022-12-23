@@ -81,9 +81,12 @@ alias now='date "+%Y-%m-%d"'
 
 alias less=/usr/share/vim/vim82/macros/less.sh
 
+alias emacs="emacsclient -c -a emacs"
+
 alias -g C="| xclip -sel clip"
 alias -g V="xclip -o"
 alias -g X="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
+
 
 # extract version from Maven pom.xml, use it to make a git tag, and push the tag
 gtm () {
@@ -130,6 +133,9 @@ export PATH=$PATH:~/.local/bin/
 
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# Doom emacs
+export PATH="$HOME/.emacs.d/bin:$PATH"
 
 # allow to read man as PDF
 manps() {

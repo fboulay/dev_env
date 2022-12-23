@@ -43,6 +43,7 @@
   default = upstream
 [merge]
   tool = /usr/bin/meld
+	conflictStyle = diff3
 [gui]
   warndetachedcommit = true
 [help]
@@ -52,6 +53,7 @@
   wordRegex = .
   compactionHeuristic = true
 	colorMoved = zebra
+	algorithm = histogram
 [rebase]
   autostash = true
 [log]

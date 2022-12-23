@@ -23,3 +23,7 @@ fi
 
 
 export PATH="$HOME/.cargo/bin:$PATH"
+
+
+# Added by Toolbox App
+export PATH="$PATH:/home/fboulay/.local/share/JetBrains/Toolbox/scripts"
