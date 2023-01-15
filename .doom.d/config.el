@@ -34,6 +34,15 @@
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-vibrant)
 (setq doom-themes-treemacs-theme "doom-colors")
+(setq
+;; doom-font (font-spec :family "Iosevka" :size 16 :weight 'semi-light :width 'expanded)
+   doom-font (font-spec :family "Fira Code" :size 15)
+   ;; doom-font (font-spec :family "JetBrains Mono" :size 15 :weight 'semi-light)
+      doom-variable-pitch-font (font-spec :family "Roboto" :size 16 :weight 'normal) ; inherits `doom-font''s :size
+      doom-unicode-font (font-spec :family "Fira Code" :size 15)
+      doom-big-font (font-spec :family "Fira Code" :size 25))
+;; disable variable pitch font for Treemacs
+(setq doom-themes-treemacs-enable-variable-pitch nil)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -41,32 +50,131 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
-
-;; Configure org mode
-(setq org-hide-emphasis-markers t)
-(setq org-ellipsis " ▼")
-
-;; Set faces for heading levels
-(with-eval-after-load 'org-faces (dolist (face '((org-level-1 . 1.2)
-                (org-level-2 . 1.1)
-                (org-level-3 . 1.05)
-                (org-level-4 . 1.0)
-                (org-level-5 . 1.1)
-                (org-level-6 . 1.1)
-                (org-level-7 . 1.1)
-                (org-level-8 . 1.1)))
-  (set-face-attribute (car face) nil :weight 'regular :height (cdr face))))
 
 
-(setq org-agenda-start-with-log-mode t)
-(setq org-log-done 'time)
 ;; Enable relative line numbers
 (setq display-line-numbers-type 'relative)
 
-(after! org
-  (setq org-roam-directory "~/org/roam/")
-  (setq org-roam-index-file "~/org/roam/index.org"))
+;; org config
+(use-package! org
+  :ensure nil
+  :defer t
+  :custom
+  (org-log-done 'time)
+  (org-hide-emphasis-markers t)
+  (org-ellipsis " ▼")
+  :config
+
+  ;; Set height of headings in org documents
+  (dolist (face '((org-level-1 . 1.4)
+                  (org-level-2 . 1.3)
+                  (org-level-3 . 1.2)
+                  (org-level-4 . 1.1)
+                  (org-level-5 . 1.1)
+                  (org-level-6 . 1.1)
+                  (org-level-7 . 1.1)
+                  (org-level-8 . 1.1)))
+    (set-face-attribute (car face) nil :weight 'normal :height (cdr face)))
+
+  ;; custom attributes for specifics faces
+  ;; (set-face-attribute 'org-verbatim nil :background "#1f2329")
+
+  ;; Make sure certain org faces use the fixed-pitch face when variable-pitch-mode is on
+  (custom-set-faces!
+    '(org-block :inherit fixed-pitch :foreground nil)
+    '(org-table :inherit fixed-pitch)
+    '(org-formula :inherit fixed-pitch)
+    '(org-checkbox :inherit fixed-pitch)
+    '(org-code :inherit (shadow fixed-pitch))
+    '(org-verbatim :inherit (shadow fixed-pitch) :background "#1f2329")
+    '(org-special-keyword :inherit (font-lock-comment-face fixed-pitch))
+    '(org-meta-line :inherit (font-lock-comment-face fixed-pitch))
+    )
+  )
+
+(use-package! org-agenda
+  :ensure nil
+  :after org
+  :custom
+  (org-agenda-start-with-log-mode t)
+  )
+
+(use-package! org-roam
+  :ensure nil
+  :after org
+  :custom
+  (org-roam-directory "~/org/roam/")
+  )
+
+;; org present config
+
+(defun fb/org-present-start ()
+  ;; Tweak font sizes
+  (setq-local face-remapping-alist '((default (:height 1.5) variable-pitch)
+                                     (header-line (:height 4.0) variable-pitch)
+                                     (org-document-title (:height 1.75) org-document-title)
+                                     (org-code (:height 1.55) org-code)
+                                     (org-verbatim (:height 1.55) org-verbatim)
+                                     (org-block (:height 1.25) org-block)
+                                     (org-block-begin-line (:height 0.7) org-block)))
+  ;; images are displayed
+  (org-display-inline-images)
+  ;; line numbers are hidden
+  (setq display-line-numbers-type nil)
+  (setq display-line-numbers nil)
+  ;; small space at the top of the buffer
+  (setq header-line-format " ")
+  ;; Center the presentation and wrap lines
+  (visual-fill-column-mode 1)
+  ;; stop electric indent mode to avoid keybindings conflicts
+  (electric-indent-mode 0)
+  ;; set buffer to read only
+  (org-present-read-only)
+  ;; go full screen
+  (toggle-frame-fullscreen)
+  (evil-force-normal-state))
+
+(defun fb/org-present-stop ()
+  ;; Reset font customizations
+  (setq-local face-remapping-alist nil)
+  ;; Display line numbers
+  (setq display-line-numbers-type 'relative)
+  (setq display-line-numbers 'relative)
+  ;; Clear the header line string so that it isn't displayed
+  (setq header-line-format nil)
+
+  ;; Stop displaying inline images
+  (org-remove-inline-images)
+  ;; Display buffer with normal layout
+  (visual-fill-column-mode 0)
+  ;; re-enable electric indent mode
+  (electric-indent-mode 1)
+  ;; set buffer to read/write
+  (org-present-read-write)
+  ;; Exit full screen
+  (toggle-frame-fullscreen))
+
+(use-package! visual-fill-column
+  :ensure t
+  :defer t
+  :custom
+  (visual-fill-column-width 110)
+  (visual-fill-column-center-text t))
+
+(use-package! org-present
+  :ensure t
+  :after org
+  :defer t
+  :init
+  (add-hook 'org-present-mode-hook 'fb/org-present-start)
+  (add-hook 'org-present-mode-quit-hook 'fb/org-present-stop))
+
+(map!
+ :mode org-mode
+ :leader
+ :desc "Start presentation"
+ "t p" #'org-present
+ )
 
 ;; Allow cursor to pass the end of line, especially when moving forward sexp
 (setq evil-move-beyond-eol t)
@@ -124,7 +232,8 @@
 (after! treemacs
     (add-hook! 'treemacs-mode-hook (setq window-divider-mode -1
                                      variable-pitch-mode 1
-                                     treemacs-follow-mode 1)))
+                                     treemacs-follow-mode 1))
+    (treemacs-follow-mode))
 
 ;; beacon highlights the line we are moving to
 (use-package! beacon)
@@ -212,23 +321,24 @@
       )
 
 (map! :leader
- :desc "Change dictionnary to fr"
- "<f5>"
- (lambda ()
-   (interactive)
-   (ispell-change-dictionary "francais")))
+      :desc "Change dictionnary to fr"
+      "<f8>"
+      (lambda ()
+        (interactive)
+        (ispell-change-dictionary "francais")))
 
 (map! :leader
- :desc "Change dictionnary to en"
- "<f6>"
- (lambda ()
-   (interactive)
-   (ispell-change-dictionary "english")))
+      :desc "Change dictionnary to en"
+      "<f9>"
+      (lambda ()
+        (interactive)
+        (ispell-change-dictionary "english")))
 
 
 ;; Automatically detect language for Flyspell
 (use-package! guess-language
-  :hook text-mode
+  :after org
+  :hook (text-mode org-mode)
   :config
   (setq guess-language-langcodes '((en . ("en_US" "English"))
                                    (fr . ("fr_FR" "French")))
@@ -236,24 +346,58 @@
         guess-language-min-paragraph-length 40)
   :diminish guess-language-mode)
 
-(after! doom-modeline
-  (setq doom-modeline-major-mode-icon t
-        doom-modeline-major-mode-color-icon t
-        doom-modeline-buffer-state-icon t))
+(use-package! doom-modeline
+  :ensure nil
+  :custom
+  (doom-modeline-major-mode-icon t)
+  (doom-modeline-major-mode-color-icon t)
+  (doom-modeline-buffer-state-icon t))
 
-;; wet suggestions to appear faster
-(setq which-key-idle-delay 0.5 ;; Default is 1.0
-      which-key-idle-secondary-delay 0.05) ;; Default is nil
+(use-package! meghanada
+  :ensure nil
+  :defer t
+  :custom
+  (meghanada-java-path "/home/fboulay/.sdkman/candidates/java/current/bin/java")
+  (meghanada-maven-path "/home/fboulay/.sdkman/candidates/maven/3.6.3/bin/mvn"))
 
-;; Replace 'evil' word in suggestion by a character
-;; (setq which-key-allow-multiple-replacements t)
+;; Allow which-key to have a good size see https://github.com/doomemacs/doomemacs/issues/5622
+(use-package! which-key
+  :ensure nil
+  :custom
+  (which-key-allow-imprecise-window-fit nil)
+  ;; wet suggestions to appear faster
+  (which-key-idle-delay 0.5) ;; Default is 1.0
+  (which-key-idle-secondary-delay 0.05)
+  (which-key-max-description-length 35)
+  (which-key-allow-multiple-replacements t)
+  :config
+  ;; Replace evil and evilem words with unicode characters
+  (pushnew! which-key-replacement-alist
+            '(("" . "\\`+?evil[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "🅔.\\1"))
+            '(("\\`g s" . "\\`evilem--?motion-\\(.*\\)") . (nil . "Ⓔ·\\1"))))
 
+(use-package! cider
+  :ensure nil
+  :defer t
+  :init
+  (add-hook 'cider-repl-mode-hook #'cider-company-enable-fuzzy-completion)
+  (add-hook 'cider-mode-hook #'cider-company-enable-fuzzy-completion))
 
-;; (after! which-key
-  ;; (pushnew! which-key-replacement-alist
-            ;; '(("" . "\\`+?evil[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "◂\\1"))
-            ;; '(("\\`g s" . "\\`evilem--?motion-\\(.*\\)") . (nil . "◃\\1"))))
+(use-package! keycast
+  :commands keycast-mode
+  :config
+  (define-minor-mode keycast-mode
+    "Show current command and its key binding in the mode line."
+    :global t
+    (if keycast-mode
+        (progn
+          (add-hook 'pre-command-hook 'keycast--update t)
+          (add-to-list 'global-mode-string '("" keycast-mode-line " ")))
+      (remove-hook 'pre-command-hook 'keycast--update)
+      (setq global-mode-string (remove '("" keycast-mode-line " ") global-mode-string)))))
 
-(after! meghanada
-  (setq meghanada-java-path "/home/fboulay/.sdkman/candidates/java/current/bin/java")
-  (setq meghanada-maven-path "/home/fboulay/.sdkman/candidates/maven/3.6.3/bin/mvn"))
+;; Allow search result to be more fuzzy
+(use-package! orderless
+  :ensure nil        ; use the package provided by doom emacs instead of downloading it
+  :custom
+  (orderless-matching-styles '(orderless-literal orderless-regexp orderless-flex)))

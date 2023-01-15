@@ -19,7 +19,7 @@
 ;; file, or is located in a subdirectory of the repo, you'll need to specify
 ;; `:files' in the `:recipe':
 ;(package! this-package
-;  :recipe (:host github :repo "username/repo"
+;  :recipe (:host github :repo "username/repo"ut
 ;           :files ("some-file.el" "src/lisp/*.el")))
 
 ;; If you'd like to disable a package included with Doom, you can do so here
@@ -49,7 +49,11 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 (package! beacon)
-(package! focus)
+(package! focus :disable t)
 (package! adoc-mode)
 (package! super-save)
 (package! guess-language)
+(package! keycast)
+(package! org-present)
+(package! visual-fill-column)
+(package! org-auto-tangle)
