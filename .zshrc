@@ -79,7 +79,7 @@ alias lf="ls -tp | grep -v /$ | head -1"
 # display current date with iso 8601 format
 alias now='date "+%Y-%m-%d"'
 
-alias less=/usr/share/vim/vim82/macros/less.sh
+alias less=/usr/share/vim/vim90/macros/less.sh
 
 alias emacs="emacsclient -c -a emacs"
 
@@ -135,7 +135,7 @@ export PATH=$PATH:~/.local/bin/
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # Doom emacs
-export PATH="$HOME/.emacs.d/bin:$PATH"
+export PATH="$HOME/.config/emacs/bin:$HOME/.emacs.d/bin:$PATH"
 
 # allow to read man as PDF
 manps() {

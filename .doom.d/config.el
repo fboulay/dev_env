@@ -38,7 +38,7 @@
 ;; doom-font (font-spec :family "Iosevka" :size 16 :weight 'semi-light :width 'expanded)
    doom-font (font-spec :family "Fira Code" :size 15)
    ;; doom-font (font-spec :family "JetBrains Mono" :size 15 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "Roboto" :size 16 :weight 'normal) ; inherits `doom-font''s :size
+      doom-variable-pitch-font (font-spec :family "Noto Sans" :size 16 :weight 'normal) ; inherits `doom-font''s :size
       doom-unicode-font (font-spec :family "Fira Code" :size 15)
       doom-big-font (font-spec :family "Fira Code" :size 25))
 ;; disable variable pitch font for Treemacs
@@ -155,14 +155,12 @@
   (toggle-frame-fullscreen))
 
 (use-package! visual-fill-column
-  :ensure t
   :defer t
   :custom
   (visual-fill-column-width 110)
   (visual-fill-column-center-text t))
 
 (use-package! org-present
-  :ensure t
   :after org
   :defer t
   :init
@@ -230,18 +228,25 @@
 ;; Treemacs config
 (add-hook 'window-setup-hook #'treemacs 'append)
 (after! treemacs
-    (add-hook! 'treemacs-mode-hook (setq window-divider-mode -1
-                                     variable-pitch-mode 1
-                                     treemacs-follow-mode 1))
+  (add-hook! 'treemacs-mode-hook
+    (setq window-divider-mode -1
+          variable-pitch-mode 1
+          treemacs-follow-mode 1
+          treemacs-recenter-after-file-follow 'on-distance
+          treemacs-recenter-distance 0.2)
+    (text-scale-adjust -1))
     (treemacs-follow-mode))
 
 ;; beacon highlights the line we are moving to
-(use-package! beacon)
+(use-package! beacon
+  :custom
+  (beacon-color "yellow")
+  (beacon-blink-duration 1))
 (after! beacon
   (beacon-mode 1))
 
 ;; Focus is highlighting the region we are working on. Is it working  ?
-(use-package! focus)
+;; (use-package! focus)
 
 ;; enable word-wrap (almost) everywhere
 (+global-word-wrap-mode +1)
@@ -257,7 +262,6 @@
 
 ;; Auto save mode
 (use-package! super-save
-  :ensure t
   :config
   (setq auto-save-default t ;; nil to switch off the built-in `auto-save-mode', maybe leave it t to have a backup!
         super-save-exclude '(".gpg")
@@ -280,46 +284,46 @@
 ;;
 ;; global and backward functions
 ;;
-(defun marker-is-point-p (marker)
-  "test if marker is current point"
-  (and (eq (marker-buffer marker) (current-buffer))
-       (= (marker-position marker) (point))))
+;; (defun marker-is-point-p (marker)
+;;   "test if marker is current point"
+;;   (and (eq (marker-buffer marker) (current-buffer))
+;;        (= (marker-position marker) (point))))
 
-(defun push-mark-maybe ()
-  "push mark onto `global-mark-ring' if mark head or tail is not current location"
-  (if (not global-mark-ring) (error "global-mark-ring empty")
-    (unless (or (marker-is-point-p (car global-mark-ring))
-                (marker-is-point-p (car (reverse global-mark-ring))))
-      (push-mark))))
+;; (defun push-mark-maybe ()
+;;   "push mark onto `global-mark-ring' if mark head or tail is not current location"
+;;   (if (not global-mark-ring) (error "global-mark-ring empty")
+;;     (unless (or (marker-is-point-p (car global-mark-ring))
+;;                 (marker-is-point-p (car (reverse global-mark-ring))))
+;;       (push-mark))))
 
 
-(defun backward-global-mark ()
-  "use `pop-global-mark', pushing current point if not on ring."
-  (interactive)
-  (push-mark-maybe)
-  (when (marker-is-point-p (car global-mark-ring))
-    (call-interactively 'pop-global-mark))
-  (call-interactively 'pop-global-mark))
+;; (defun backward-global-mark ()
+;;   "use `pop-global-mark', pushing current point if not on ring."
+;;   (interactive)
+;;   (push-mark-maybe)
+;;   (when (marker-is-point-p (car global-mark-ring))
+;;     (call-interactively 'pop-global-mark))
+;;   (call-interactively 'pop-global-mark))
 
-(defun forward-global-mark ()
-  "hack `pop-global-mark' to go in reverse, pushing current point if not on ring."
-  (interactive)
-  (push-mark-maybe)
-  (setq global-mark-ring (nreverse global-mark-ring))
-  (when (marker-is-point-p (car global-mark-ring))
-    (call-interactively 'pop-global-mark))
-  (call-interactively 'pop-global-mark)
-  (setq global-mark-ring (nreverse global-mark-ring)))
+;; (defun forward-global-mark ()
+;;   "hack `pop-global-mark' to go in reverse, pushing current point if not on ring."
+;;   (interactive)
+;;   (push-mark-maybe)
+;;   (setq global-mark-ring (nreverse global-mark-ring))
+;;   (when (marker-is-point-p (car global-mark-ring))
+;;     (call-interactively 'pop-global-mark))
+;;   (call-interactively 'pop-global-mark)
+;;   (setq global-mark-ring (nreverse global-mark-ring)))
 
-(map! :leader
-      ;; <leader> x will invoke the dosomething command
-      :desc "Go backward"
-      "<left>" #'backward-global-mark
-      ;; <leader> y will print "Hello world" in the minibuffer
-      :desc "Go forward"
-      "<right>" #'forward-global-mark
-      )
-
+;; (map! :leader
+;;       ;; <leader> x will invoke the dosomething command
+;;       :desc "Go backward"
+;;       "<left>" #'backward-global-mark
+;;       ;; <leader> y will print "Hello world" in the minibuffer
+;;       :desc "Go forward"
+;;       "<right>" #'forward-global-mark
+;;       )
+;;
 (map! :leader
       :desc "Change dictionnary to fr"
       "<f8>"
@@ -337,11 +341,10 @@
 
 ;; Automatically detect language for Flyspell
 (use-package! guess-language
-  :after org
   :hook (text-mode org-mode)
   :config
-  (setq guess-language-langcodes '((en . ("en_US" "English"))
-                                   (fr . ("fr_FR" "French")))
+  (setq guess-language-langcodes '((en . ("en_US" "English" "🇬🇧" "English"))
+                                   (fr . ("fr_FR" "French" "🇫🇷" "French")))
         guess-language-languages '(en fr)
         guess-language-min-paragraph-length 40)
   :diminish guess-language-mode)
@@ -370,6 +373,7 @@
   (which-key-idle-secondary-delay 0.05)
   (which-key-max-description-length 35)
   (which-key-allow-multiple-replacements t)
+  (which-key-use-C-h-commands t)
   :config
   ;; Replace evil and evilem words with unicode characters
   (pushnew! which-key-replacement-alist
@@ -400,4 +404,42 @@
 (use-package! orderless
   :ensure nil        ; use the package provided by doom emacs instead of downloading it
   :custom
-  (orderless-matching-styles '(orderless-literal orderless-regexp orderless-flex)))
+  (orderless-matching-styles '(orderless-literal orderless-regexp orderless-initialism)))
+
+(map!
+ :nvi
+ "C-M-<" #'sp-backward-barf-sexp
+ )
+
+(map!
+ :nvi
+ "C-M->" #'sp-forward-barf-sexp
+ )
+
+(map!
+ :nvi
+ "C->" #'sp-forward-slurp-sexp
+ )
+
+(map!
+ :nvi
+ "C-<" #'sp-backward-slurp-sexp
+ )
+
+;; Expand and contract region available when pressing multiple times v or V in visual mode
+(map!
+ (:map 'override
+   :v "v" #'er/expand-region
+   :v "V" #'er/contract-region))
+
+;; When saving a clojure file, format it
+(use-package! lsp-mode
+  :init (add-hook 'clojure-mode-hook
+                  (lambda ()
+                    (add-hook 'before-save-hook #'lsp-format-buffer))))
+
+;; add the cider-eval-list-at-point in the keybindings
+(map! :localleader
+      :map (clojure-mode-map clojurescript-mode-map clojurec-mode-map)
+      "e l" #'cider-eval-list-at-point
+      )
