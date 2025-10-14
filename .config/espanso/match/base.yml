@@ -2,52 +2,61 @@
 # Original file: default.yml
 
 matches:
-  - trigger: ":code"
+  - trigger: ";code"
     replace: |-
       ```
       $|$
       ```
-  - trigger: ":snip"
+  - trigger: ";snip"
     replace: "``` $|$ ```"
-  - trigger: ":date"
+  - trigger: ";date"
     replace: "{{mydate}}"
     vars:
       - name: mydate
         type: date
         params:
           format: "%Y-%m-%d"
-  - trigger: ":yest"
+  - trigger: ";yest"
     replace: "{{output}}"
     vars:
       - name: output
         type: shell
         params:
           cmd: "date -d '1 day ago' '+%Y-%m-%d'"
-  - trigger: ":time"
+  - trigger: ";time"
     replace: "{{mytime}}"
     vars:
       - name: mytime
         type: date
         params:
           format: "%H:%M"
-  - trigger: ":pass"
+  - trigger: ";pass"
     replace: "{{output}}"
     vars:
       - name: output
         type: shell
         params:
-          cmd: "< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c32"
-  - trigger: ":rand"
+          cmd: "< /dev/urandom tr -dc A-Za-z0-9 | head -c32"
+  - trigger: ";rand"
     replace: "{{output}}"
     vars:
       - name: output
         type: shell
         params:
-          cmd: apg -n 1 -m 10
-  - trigger: ":hi"
+          cmd: >
+            < /dev/urandom tr -dc 'A-Za-z0-9!"#$%&'\''()*+,-./:;<=>?@[\]^_`{|}~' | head -c30
+  - trigger: ";hi"
     replace: "{{output}}"
     vars:
       - name: output
         type: shell
         params:
           cmd: "P=('Salut !' 'Bonjour ! 👋' 'Coucou'); echo ${P[RANDOM%${#P[@]}]}"
+
+  - trigger: ";uuid"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "uuidgen"

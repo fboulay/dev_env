@@ -70,3 +70,19 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
+[gitlab "gitlab.oscaroad.com/api/v4"]
+	user = florian.boulay
+[github]
+	user = fboulay
+[gitlab]
+    user = fboulay
+[gpg]
+	format = ssh
+[user]
+	signingKey = /home/fboulay/.ssh/id_ed25519.pub
+[tag]
+    gpgsign = true
+[commit]
+	gpgsign = true
+[gpg "ssh"]
+	allowedSignersFile = /home/fboulay/.ssh/allowed_signers

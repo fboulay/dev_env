@@ -16,21 +16,21 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle command-not-found
 antigen bundle djui/alias-tips
 antigen bundle extract
-antigen bundle tmux
-antigen bundle screen
+#antigen bundle tmux
+#antigen bundle screen
 antigen bundle mvn
 antigen bundle lein
 antigen bundle aws
 antigen bundle httpie
 antigen bundle nvm
 antigen bundle common-aliases
-antigen bundle marzocchi/zsh-notify
+#antigen bundle marzocchi/zsh-notify
 antigen bundle chrissicool/zsh-256color
 antigen bundle colored-man-pages
 antigen bundle autojump # need to install autojump first, eg : apt install autojump
 
 # Super history bound to ctrl+R
-antigen bundle psprint/zsh-navigation-tools
+antigen bundle zsh-navigation-tools
 
 # Automatically source .autoenv.zsh file in each directory, allowing to locally override any
 # variable like PATH
@@ -40,28 +40,33 @@ antigen bundle Tarrasch/zsh-autoenv
 antigen bundle zsh-users/zsh-syntax-highlighting
 
 # History per directory (and by substring)
-antigen bundle fboulay/zsh-directory-history
+#antigen bundle fboulay/zsh-directory-history
+antigen bundle tymm/zsh-directory-history
 
 # bind history
 zmodload zsh/terminfo
-bindkey "$terminfo[kcuu1]" directory-history-search-backward
-bindkey "$terminfo[kcud1]" directory-history-search-forward
-
+bindkey "^[[A" directory-history-search-backward
+bindkey "^[[B" directory-history-search-forward
+# Bind CTRL+k and CTRL+j to substring search
+bindkey '^j' history-substring-search-up
+bindkey '^k' history-substring-search-down
 
 # bind CTRL + space to accept and execute command suggestion
 bindkey '^ ' autosuggest-execute
 
 # Load the awesome theme from fboulay
-antigen theme fboulay/oh-my-zsh-agnoster-fboulay agnoster-fboulay
+#antigen theme fboulay/oh-my-zsh-agnoster-fboulay agnoster-fboulay
+eval "$(starship init zsh)"
+#eval "$(starship completions zsh)"
 
 # Tell antigen that you're done.
 antigen apply
 
 # User configuration
 
-export EDITOR='vim'
+export EDITOR='emacs -nw'
 
-eval "$(lesspipe)"
+#eval "$(lesspipe)"
 
 export MTR_OPTIONS=-t
 
@@ -71,19 +76,35 @@ eval $(dircolors)
 compdef v="vcsh"
 alias vd="vcsh dev_env "
 
-# https://github.com/athityakumar/colorls
-alias lc="colorls -sd"
+# Replace ls with eza
+alias ls='eza -al --color=always --group-directories-first --icons=auto' # preferred listing
+alias la='eza -a --color=always --group-directories-first --icons=auto'  # all files and dirs
+alias ll='eza -l --color=always --group-directories-first --icons=auto'  # long format
+alias lt='eza -aT --color=always --group-directories-first --icons=auto' # tree listing
+alias l.="eza -a | egrep '^\.'"                                     # show only dotfiles
+alias cat=bat
+#alias find=fd
+alias grep=rg
 
 # display last file in current directory (by date desc)
 alias lf="ls -tp | grep -v /$ | head -1"
 # display current date with iso 8601 format
 alias now='date "+%Y-%m-%d"'
 
-alias less=/usr/share/vim/vim90/macros/less.sh
+#alias less=/usr/share/vim/vim91/macros/less.sh
 
-alias emacs="emacsclient -c -a emacs"
+#alias emacs="emacsclient -c -a emacs"
 
-alias -g C="| xclip -sel clip"
+copy_cmd() {
+    if [[ $XDG_SESSION_TYPE == 'wayland' ]]
+    then
+        echo wl-copy 
+    else
+        echo xclip -sel clip
+    fi
+}
+
+alias -g C="| $(copy_cmd)"
 alias -g V="xclip -o"
 alias -g X="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
 
@@ -114,12 +135,13 @@ function count_obs() {
 
 # ZSH completion
 fpath=($fpath ~/.zsh/completion)
-rm -f ~/.zcompdump; compinit
+#rm -f ~/.zcompdump; compinit
 
 # NVM
 [ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
+[ -s /usr/share/nvm/init-nvm.sh ] && . /usr/share/nvm/init-nvm.sh # This loads NVM
 
-# Load custom key bindings for gnome
+#Load custom key bindings for gnome
 # command to save custom key bindings
 dconf load /org/gnome/desktop/wm/keybindings/ < ~/.config/dconf/user.conf
 
@@ -137,6 +159,13 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Doom emacs
 export PATH="$HOME/.config/emacs/bin:$HOME/.emacs.d/bin:$PATH"
 
+# Gcloud
+export PATH="/opt/google-cloud-cli/bin:$PATH"
+
+# Use bat as man pager
+export MANROFFOPT="-c"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
 # allow to read man as PDF
 manps() {
   manps_file=$(mktemp manps.XXXXX)
@@ -148,11 +177,18 @@ manps() {
 # yubikey agent: https://github.com/FiloSottile/yubikey-agent
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/yubikey-agent/yubikey-agent.sock"
 
-source /home/fboulay/.config/broot/launcher/bash/br
+[ -s /home/fboulay/.config/broot/launcher/bash/br ] && source /home/fboulay/.config/broot/launcher/bash/br
 
 # brew
-eval $(/home/fboulay/.linuxbrew/bin/brew shellenv)
+[ -s /home/fboulay/.linuxbrew/bin/brew ] && eval $(/home/fboulay/.linuxbrew/bin/brew shellenv)
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/fboulay/.sdkman"
-[[ -s "/home/fboulay/.sdkman/bin/sdkman-init.sh" ]] && source "/home/fboulay/.sdkman/bin/sdkman-init.sh"
+
+FAST_OPTIONS="--iterm"
+if [[ $TERM == "xterm-kitty" || $TERM == "xterm-ghostty" ]]; then
+  FAST_OPTIONS="--kitty"
+fi
+
+fastfetch ${FAST_OPTIONS} /usr/share/icons/garuda/dr460nized-fastfetch.png --percent-type 2
+
+# Mise setup (replaces asdf or nvm or sdkman)
+eval "$(mise activate zsh)"

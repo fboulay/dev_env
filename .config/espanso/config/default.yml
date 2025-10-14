@@ -2,3 +2,5 @@
 # Original file: default.yml
 
 toggle_key: "OFF"
+search_shortcut: off
+
