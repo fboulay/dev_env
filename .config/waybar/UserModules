@@ -1,0 +1,33 @@
+//* ---- 💫 https://github.com/JaKooLit 💫 ---- *//
+/* Waybar Modules Extras */
+
+/* This is where you can add Extra Modules you wish. copy.sh will try to restore*/
+/* this file along with the unique configs and styles. */
+/* IMPORTANT, be mindful with , or ". else waybar will not start */
+
+{
+    "custom/pacman": {
+        "format": "{icon}{0}",
+        "return-type": "json",
+        "format-icons": {
+            "pending-updates": " ",
+            "updated": " "
+        },
+        "exec-if": "which waybar-updates",
+        "exec": "waybar-updates -n on",
+        "on-click": "kitty -T 'system update' --detach -e bash -c \"paru -Syu ; read -p 'Press enter to exit'\"",
+        "on-click-right": "kitty -T 'update check' --detach -e bash -c \"/home/fboulay/.config/hypr/UserScripts/check_updates.sh && read -p 'Press enter to exit'\"",
+    },
+    "custom/wttr-weather": {
+        "format": "{}°",
+        "format-alt": "{alt}: {}",
+        "format-alt-click": "click",
+        "interval": 3600,
+        "return-type": "json",
+        "exec-if": "which wttrbar",
+        "exec": "wttrbar",
+        "tooltip": true,
+        "on-click-right": "chromium --new-window --app=https://merrysky.net/",
+        "on-click-middle": "chromium --new-window --app=https://weather.com/fr-FR/weather/today/",
+    },
+}
