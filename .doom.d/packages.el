@@ -107,6 +107,7 @@
 (package! pulsar) ;; same as beacon and nav-flash
 (package! org-modern-indent
   :recipe (:host github :repo "jdtsmith/org-modern-indent"))
+(package! agent-shell)
 ;; I pin some packages to have a more recent version
 ;; (package! cider :pin "2bafc1ec67308de500ce7ce8ac8f79eae449dee8") ;; version 1.12.0
 ;; (package! clojure-mode :pin "25d713a67d8e0209ee74bfc0153fdf677697b43f") ;; version 5.18.1

@@ -344,6 +344,12 @@
   :custom
   (lsp-java-content-provider-preferred "fernflower"))
 
+(use-package! lsp-ui
+  :custom
+  (lsp-ui-doc-show-with-cursor t)
+  (lsp-ui-doc-position 'top)
+  (lsp-ui-doc-max-height 15))
+
 ;; create a global minor mode for `magit-wip-mode`
 (define-globalized-minor-mode global-wip-mode magit-wip-mode
   (lambda ()
@@ -412,6 +418,25 @@
   :defer t
   :config
   (set-popup-rule! "^\\*doom:vterm" :height 0.36 :quit t))
+
+(use-package! agent-shell
+  :defer t
+  :config
+  (setq agent-shell-opencode-authentication
+        (agent-shell-opencode-make-authentication :none t))
+  (setq agent-shell-anthropic-claude-environment
+        (agent-shell-make-environment-variables
+         "ANTHROPIC_API_KEY" (auth-source-pick-first-password :host "claude.ai")))
+  (setq agent-shell-anthropic-authentication
+        (agent-shell-anthropic-make-authentication :api-key (auth-source-pick-first-password :host "claude.ai"))))
+
+(map! :leader
+      :desc "Open agent shell"
+      "l a" #'agent-shell)
+
+(map! :mode agent-shell-mode
+      :n "g j" #'agent-shell-next-item
+      :n "g k" #'agent-shell-previous-item)
 
 (use-package! org
   :defer t
@@ -634,22 +659,6 @@
 
 ;; (after! beacon
 ;;   (beacon-mode 1))
-
-(use-package! pulsar
-  :custom
-  (pulsar-pulse t)
-  (pulsar-delay 0.1)
-  (pulsar-iterations 10)
-  (pulsar-pulse-region-functions pulsar-pulse-region-common-functions)
-  :config
-  (add-hook 'minibuffer-setup-hook #'pulsar-pulse-line)
-  (add-hook 'doom-switch-window-hook #'pulsar-pulse-line)
-  (add-hook 'better-jumper-post-jump-hook #'pulsar-recenter-center)
-  (advice-add #'what-cursor-position :after #'pulsar-pulse-line)
-  (pulsar-global-mode 1))
-
-(after! (:and pulsar consult)
-  (add-hook 'consult-after-jump-hook #'pulsar-pulse-line))
 
 ;; Auto save mode
 (use-package! super-save
